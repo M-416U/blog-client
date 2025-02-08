@@ -2,6 +2,7 @@ import { ThemeProvider } from "./components/ThemeProvider";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { AlertProvider } from "./context/AlertContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,9 @@ export default function RootLayout({
         bg-background-light dark:bg-background-dark
         text-text-light dark:text-text-dark`}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <AlertProvider>{children}</AlertProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
