@@ -3,6 +3,7 @@ import { BsEye, BsEyeSlash } from "react-icons/bs";
 
 interface AuthInputProps {
   label: string;
+  name: string;
   type: string;
   icon: React.ElementType;
   value: string;
@@ -17,6 +18,7 @@ export function AuthInput({
   value,
   onChange,
   error,
+  name,
 }: AuthInputProps) {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -42,6 +44,7 @@ export function AuthInput({
                    focus:border-primary-light dark:focus:border-primary-dark
                    placeholder-gray-400 dark:placeholder-gray-500
                    transition-colors"
+          name={name}
         />
         {type === "password" && (
           <button

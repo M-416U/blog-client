@@ -2,6 +2,14 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import api from "../lib/axios";
 
+interface RegisterData {
+  email: string;
+  username: string;
+  password: string;
+  avatar?: string;
+  interests?: string[];
+}
+
 interface AuthState {
   token: string | null;
   user: {
@@ -10,7 +18,7 @@ interface AuthState {
     role: string;
   } | null;
   login: (email: string, password: string) => Promise<void>;
-  register: (email: string, password: string) => Promise<void>;
+  register: (data: RegisterData) => Promise<void>;
   logout: () => void;
 }
 
@@ -31,12 +39,12 @@ export const useAuthStore = create<AuthState>()(
           throw new Error("Invalid credentials");
         }
       },
-      register: async (email, password) => {
+      register: async (data) => {
         try {
-          await api.post("/auth/register", {
-            email,
-            password,
-          });
+          const response = await api.post("/auth/register", data);
+          if (response.data.token) {
+            set({ token: response.data.token });
+          }
         } catch (error) {
           console.log(error);
           throw new Error("Registration failed");

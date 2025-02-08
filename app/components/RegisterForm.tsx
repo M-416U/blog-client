@@ -2,22 +2,69 @@
 import { useState } from "react";
 import { useAuthStore } from "../stores/useAuthStore";
 import { AuthInput } from "./ui/AuthInput";
-import { BiEnvelope, BiLock } from "react-icons/bi";
+import { BiEnvelope, BiLock, BiUser } from "react-icons/bi";
 import { useAlert } from "../context/AlertContext";
 import Link from "next/link";
+import { validateRegistrationForm } from "../utils/validators";
+
+interface FormData {
+  email: string;
+  username: string;
+  password: string;
+  confirmPassword: string;
+}
+
+interface FormErrors {
+  email?: string;
+  username?: string;
+  password?: string;
+  confirmPassword?: string;
+}
 
 export const RegisterForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState<FormData>({
+    email: "",
+    username: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const [errors, setErrors] = useState<FormErrors>({
+    email: "",
+    username: "",
+    password: "",
+    confirmPassword: "",
+  });
+
   const [loading, setLoading] = useState(false);
   const register = useAuthStore((state) => state.register);
   const { showAlert } = useAlert();
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const { isValid, errors: validationErrors } =
+      validateRegistrationForm(formData);
+    if (!isValid) {
+      setErrors(validationErrors);
+      return;
+    }
+
     setLoading(true);
     try {
-      await register(email, password);
+      await register({
+        email: formData.email,
+        username: formData.username,
+        password: formData.password,
+      });
       showAlert("Registration successful!", "success");
     } catch (err) {
       console.log(err);
@@ -42,16 +89,40 @@ export const RegisterForm = () => {
               label="Email"
               type="email"
               icon={BiEnvelope}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              error={errors.email}
+            />
+
+            <AuthInput
+              label="Username"
+              type="text"
+              icon={BiUser}
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              error={errors.username}
             />
 
             <AuthInput
               label="Password"
               type="password"
               icon={BiLock}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              error={errors.password}
+            />
+
+            <AuthInput
+              label="Confirm Password"
+              type="password"
+              icon={BiLock}
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              error={errors.confirmPassword}
             />
 
             <button
