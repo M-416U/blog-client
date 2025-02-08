@@ -1,3 +1,4 @@
+import { AuthButton } from "./AuthButton";
 import { ThemeToggle } from "./ThemeToggle";
 
 const Navbar = () => {
@@ -7,7 +8,10 @@ const Navbar = () => {
         <h1 className="text-2xl font-bold text-primary-light dark:text-primary-dark">
           Modern Blog
         </h1>
-        <ThemeToggle />
+        <div className="flex items-center">
+          <ThemeToggle />
+          <AuthButton />
+        </div>
       </div>
     </nav>
   );

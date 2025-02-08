@@ -1,25 +1,15 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import api from "../lib/axios";
-
-interface RegisterData {
-  email: string;
-  username: string;
-  password: string;
-  avatar?: string;
-  interests?: string[];
-}
+import { RegisterData, UserProfile } from "@/@types";
 
 interface AuthState {
   token: string | null;
-  user: {
-    id: string;
-    email: string;
-    role: string;
-  } | null;
+  user: UserProfile | null;
   login: (email: string, password: string) => Promise<void>;
   register: (data: RegisterData) => Promise<void>;
   logout: () => void;
+  setUserProfile: (profile: UserProfile) => void;
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -51,6 +41,7 @@ export const useAuthStore = create<AuthState>()(
         }
       },
       logout: () => set({ token: null, user: null }),
+      setUserProfile: (profile: UserProfile) => set({ user: profile }),
     }),
     {
       name: "auth-storage",
