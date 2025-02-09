@@ -1,11 +1,8 @@
 import "../globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { notFound } from "next/navigation";
-import { LanguageProvider } from "@/components/providers/LanguageProvider";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { AlertProvider } from "@/context/AlertContext";
-import i18nConfig from "@/i18nConfig";
 import { languages } from "@/i18n/settings";
 import { dir } from "i18next";
 export async function generateStaticParams() {
@@ -18,16 +15,14 @@ export const metadata: Metadata = {
   description: "A modern blog with dark/light theme",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-  params: { lang },
+  params,
 }: {
   children: React.ReactNode;
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }) {
-  if (!i18nConfig.locales.includes(lang)) {
-    notFound();
-  }
+  const lang = (await params).lang;
   return (
     <html lang="en" suppressHydrationWarning dir={dir(lang)}>
       <body
@@ -35,11 +30,9 @@ export default function RootLayout({
         bg-background-light dark:bg-background-dark
         text-text-light dark:text-text-dark`}
       >
-        <LanguageProvider>
-          <ThemeProvider>
-            <AlertProvider>{children}</AlertProvider>
-          </ThemeProvider>
-        </LanguageProvider>
+        <ThemeProvider>
+          <AlertProvider>{children}</AlertProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

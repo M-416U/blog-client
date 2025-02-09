@@ -1,8 +1,14 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
-const MainPagesLayout = ({ children }: { children: React.ReactNode }) => {
+const MainPagesLayout = async ({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ lang: string }>;
+}) => {
   return (
     <>
       <Navbar />

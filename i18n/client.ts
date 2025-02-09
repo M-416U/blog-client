@@ -31,7 +31,11 @@ i18next
     preload: runsOnServerSide ? languages : [],
   });
 
-export function useTranslation(lng: string, ns: string, options = {}) {
+export function useTranslation(
+  lng: string,
+  ns: string = "translation",
+  options = {}
+) {
   const [cookies, setCookie] = useCookies([cookieName]);
   const ret = useTranslationOrg(ns, options);
   const { i18n } = ret;

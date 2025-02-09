@@ -6,7 +6,8 @@ import { BiEnvelope, BiLock, BiUser } from "react-icons/bi";
 import { useAlert } from "../context/AlertContext";
 import Link from "next/link";
 import { validateRegistrationForm } from "../utils/validators";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "@/i18n/client";
+import { langType } from "@/@types";
 
 interface FormData {
   email: string;
@@ -22,8 +23,8 @@ interface FormErrors {
   confirmPassword?: string;
 }
 
-export const RegisterForm = () => {
-  const { t } = useTranslation();
+export const RegisterForm = ({ lang }: { lang: langType }) => {
+  const { t } = useTranslation(lang);
   const [formData, setFormData] = useState<FormData>({
     email: "",
     username: "",

@@ -15,3 +15,5 @@ export interface RegisterData {
   avatar?: string;
   interests?: string[];
 }
+
+export type langType = "en" | "ar";
