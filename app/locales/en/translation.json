@@ -1,6 +1,35 @@
 {
   "welcome": "Welcome",
-  "home": "Home",
-  "about": "About",
-  "contact": "Contact"
+
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "auth": {
+    "login": {
+      "title": "Sign in",
+      "email": "Email",
+      "password": "Password",
+      "submitButton": "Sign in",
+      "loadingButton": "Signing in...",
+      "noAccount": "Don't have an account?",
+      "createAccount": "Create an account",
+      "successMessage": "Successfully logged in!",
+      "errorMessage": "Invalid credentials"
+    },
+    "register": {
+      "title": "Register",
+      "email": "Email",
+      "username": "Username",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "submitButton": "Register",
+      "loadingButton": "Creating account...",
+      "haveAccount": "Already have an account?",
+      "signIn": "Sign in",
+      "successMessage": "Registration successful!",
+      "errorMessage": "Registration failed"
+    }
+  }
 }

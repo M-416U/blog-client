@@ -1,4 +1,5 @@
 import { AuthButton } from "./AuthButton";
+import LanguageSwitcher from "./LanguageSwitcher";
 import { ThemeToggle } from "./ThemeToggle";
 
 const Navbar = () => {
@@ -11,6 +12,7 @@ const Navbar = () => {
         <div className="flex items-center">
           <ThemeToggle />
           <AuthButton />
+          <LanguageSwitcher />
         </div>
       </div>
     </nav>

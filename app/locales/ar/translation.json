@@ -1,6 +1,34 @@
 {
   "welcome": "مرحباً",
-  "home": "الرئيسية",
-  "about": "من نحن",
-  "contact": "اتصل بنا"
+  "navigation": {
+    "home": "الرئيسية",
+    "about": "من نحن",
+    "contact": "اتصل بنا"
+  },
+  "auth": {
+    "login": {
+      "title": "تسجيل الدخول",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "submitButton": "تسجيل الدخول",
+      "loadingButton": "جاري تسجيل الدخول...",
+      "noAccount": "ليس لديك حساب؟",
+      "createAccount": "إنشاء حساب",
+      "successMessage": "تم تسجيل الدخول بنجاح!",
+      "errorMessage": "بيانات غير صحيحة"
+    },
+    "register": {
+      "title": "إنشاء حساب",
+      "email": "البريد الإلكتروني",
+      "username": "اسم المستخدم",
+      "password": "كلمة المرور",
+      "confirmPassword": "تأكيد كلمة المرور",
+      "submitButton": "إنشاء حساب",
+      "loadingButton": "جاري إنشاء الحساب...",
+      "haveAccount": "لديك حساب بالفعل؟",
+      "signIn": "تسجيل الدخول",
+      "successMessage": "تم إنشاء الحساب بنجاح!",
+      "errorMessage": "فشل في إنشاء الحساب"
+    }
+  }
 }

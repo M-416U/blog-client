@@ -6,6 +6,7 @@ import { BiEnvelope, BiLock, BiUser } from "react-icons/bi";
 import { useAlert } from "../context/AlertContext";
 import Link from "next/link";
 import { validateRegistrationForm } from "../utils/validators";
+import { useTranslation } from "react-i18next";
 
 interface FormData {
   email: string;
@@ -22,6 +23,7 @@ interface FormErrors {
 }
 
 export const RegisterForm = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<FormData>({
     email: "",
     username: "",
@@ -65,10 +67,10 @@ export const RegisterForm = () => {
         username: formData.username,
         password: formData.password,
       });
-      showAlert("Registration successful!", "success");
+      showAlert(t("auth.register.successMessage"), "success");
     } catch (err) {
       console.log(err);
-      showAlert("Registration failed", "error");
+      showAlert(t("auth.register.errorMessage"), "error");
     } finally {
       setLoading(false);
     }
@@ -78,7 +80,7 @@ export const RegisterForm = () => {
     <div className="min-h-screen bg-background-light dark:bg-background-dark flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="text-center text-3xl font-extrabold text-text-light dark:text-text-dark">
-          Register
+          {t("auth.register.title")}
         </h2>
       </div>
 
@@ -86,7 +88,7 @@ export const RegisterForm = () => {
         <div className="bg-surface-light dark:bg-surface-dark py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <AuthInput
-              label="Email"
+              label={t("auth.register.email")}
               type="email"
               icon={BiEnvelope}
               name="email"
@@ -96,7 +98,7 @@ export const RegisterForm = () => {
             />
 
             <AuthInput
-              label="Username"
+              label={t("auth.register.username")}
               type="text"
               icon={BiUser}
               name="username"
@@ -106,7 +108,7 @@ export const RegisterForm = () => {
             />
 
             <AuthInput
-              label="Password"
+              label={t("auth.register.password")}
               type="password"
               icon={BiLock}
               name="password"
@@ -116,7 +118,7 @@ export const RegisterForm = () => {
             />
 
             <AuthInput
-              label="Confirm Password"
+              label={t("auth.register.confirmPassword")}
               type="password"
               icon={BiLock}
               name="confirmPassword"
@@ -130,16 +132,18 @@ export const RegisterForm = () => {
               disabled={loading}
               className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-light dark:bg-primary-dark hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light dark:focus:ring-primary-dark disabled:opacity-50"
             >
-              {loading ? "Creating account..." : "Register"}
+              {loading
+                ? t("auth.register.loadingButton")
+                : t("auth.register.submitButton")}
             </button>
           </form>
           <p className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
-            Already have an account?{" "}
+            {t("auth.register.haveAccount")}{" "}
             <Link
               href="/login"
               className="font-medium text-primary-light dark:text-primary-dark hover:opacity-90"
             >
-              Sign in
+              {t("auth.register.signIn")}
             </Link>
           </p>
         </div>

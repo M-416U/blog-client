@@ -6,6 +6,7 @@ import { BiEnvelope, BiLock } from "react-icons/bi";
 import { useAlert } from "../context/AlertContext";
 import Link from "next/link";
 import { validateLoginForm } from "../utils/validators";
+import { useTranslation } from "react-i18next";
 
 interface FormData {
   email: string;
@@ -18,6 +19,7 @@ interface FormErrors {
 }
 
 export const LoginForm = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<FormData>({
     email: "",
     password: "",
@@ -48,10 +50,10 @@ export const LoginForm = () => {
     setLoading(true);
     try {
       await login(formData.email, formData.password);
-      showAlert("Successfully logged in!", "success");
+      showAlert(t("auth.login.successMessage"), "success");
     } catch (err) {
       console.log(err);
-      showAlert("Invalid credentials", "error");
+      showAlert(t("auth.login.errorMessage"), "error");
     } finally {
       setLoading(false);
     }
@@ -61,7 +63,7 @@ export const LoginForm = () => {
     <div className="min-h-screen bg-background-light dark:bg-background-dark flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="text-center text-3xl font-extrabold text-text-light dark:text-text-dark">
-          Sign in
+          {t("auth.login.title")}
         </h2>
       </div>
 
@@ -69,7 +71,7 @@ export const LoginForm = () => {
         <div className="bg-surface-light dark:bg-surface-dark py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <AuthInput
-              label="Email"
+              label={t("auth.login.email")}
               type="email"
               icon={BiEnvelope}
               value={formData.email}
@@ -79,7 +81,7 @@ export const LoginForm = () => {
             />
 
             <AuthInput
-              label="Password"
+              label={t("auth.login.password")}
               type="password"
               icon={BiLock}
               value={formData.password}
@@ -93,16 +95,18 @@ export const LoginForm = () => {
               disabled={loading}
               className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-light dark:bg-primary-dark hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light dark:focus:ring-primary-dark disabled:opacity-50"
             >
-              {loading ? "Signing in..." : "Sign in"}
+              {loading
+                ? t("auth.login.loadingButton")
+                : t("auth.login.submitButton")}
             </button>
           </form>
           <p className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
-            Don&apos;t have an account?{" "}
+            {t("auth.login.noAccount")}{" "}
             <Link
               href="/register"
               className="font-medium text-primary-light dark:text-primary-dark hover:opacity-90"
             >
-              Create an account
+              {t("auth.login.createAccount")}
             </Link>
           </p>
         </div>
