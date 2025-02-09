@@ -1,8 +1,9 @@
-import { ThemeProvider } from "./components/ThemeProvider";
+import { ThemeProvider } from "./components/providers/ThemeProvider";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { AlertProvider } from "./context/AlertContext";
+import { LanguageProvider } from "./components/providers/LanguageProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,9 +24,11 @@ export default function RootLayout({
         bg-background-light dark:bg-background-dark
         text-text-light dark:text-text-dark`}
       >
-        <ThemeProvider>
-          <AlertProvider>{children}</AlertProvider>
-        </ThemeProvider>
+        <LanguageProvider>
+          <ThemeProvider>
+            <AlertProvider>{children}</AlertProvider>
+          </ThemeProvider>
+        </LanguageProvider>
       </body>
     </html>
   );
