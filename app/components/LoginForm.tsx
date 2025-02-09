@@ -5,19 +5,49 @@ import { AuthInput } from "./ui/AuthInput";
 import { BiEnvelope, BiLock } from "react-icons/bi";
 import { useAlert } from "../context/AlertContext";
 import Link from "next/link";
+import { validateLoginForm } from "../utils/validators";
+
+interface FormData {
+  email: string;
+  password: string;
+}
+
+interface FormErrors {
+  email?: string;
+  password?: string;
+}
 
 export const LoginForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState<FormData>({
+    email: "",
+    password: "",
+  });
+
+  const [errors, setErrors] = useState<FormErrors>({});
   const [loading, setLoading] = useState(false);
   const login = useAuthStore((state) => state.login);
   const { showAlert } = useAlert();
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const { isValid, errors: validationErrors } = validateLoginForm(formData);
+    if (!isValid) {
+      setErrors(validationErrors);
+      return;
+    }
+
     setLoading(true);
     try {
-      await login(email, password);
+      await login(formData.email, formData.password);
       showAlert("Successfully logged in!", "success");
     } catch (err) {
       console.log(err);
@@ -42,16 +72,20 @@ export const LoginForm = () => {
               label="Email"
               type="email"
               icon={BiEnvelope}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formData.email}
+              onChange={handleChange}
+              name="email"
+              error={errors.email}
             />
 
             <AuthInput
               label="Password"
               type="password"
               icon={BiLock}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formData.password}
+              onChange={handleChange}
+              name="password"
+              error={errors.password}
             />
 
             <button

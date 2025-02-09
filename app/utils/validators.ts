@@ -53,3 +53,40 @@ export const validateRegistrationForm = (
 
   return { isValid, errors };
 };
+
+interface LoginValidationData {
+  email: string;
+  password: string;
+}
+
+interface LoginValidationErrors {
+  email?: string;
+  password?: string;
+}
+
+export const validateLoginForm = (
+  data: LoginValidationData
+): { isValid: boolean; errors: LoginValidationErrors } => {
+  const errors: LoginValidationErrors = {};
+  let isValid = true;
+
+  // Email validation
+  if (!data.email) {
+    errors.email = "Email is required";
+    isValid = false;
+  } else if (!/\S+@\S+\.\S+/.test(data.email)) {
+    errors.email = "Email is invalid";
+    isValid = false;
+  }
+
+  // Password validation
+  if (!data.password) {
+    errors.password = "Password is required";
+    isValid = false;
+  } else if (data.password.length < 6) {
+    errors.password = "Password must be at least 6 characters";
+    isValid = false;
+  }
+
+  return { isValid, errors };
+};
