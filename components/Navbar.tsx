@@ -12,7 +12,7 @@ const Navbar = () => {
         <div className="flex items-center">
           <ThemeToggle />
           <AuthButton />
-          <LanguageSwitcher />
+          {/* <LanguageSwitcher /> */}
         </div>
       </div>
     </nav>

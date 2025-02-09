@@ -1,8 +1,9 @@
 {
   "welcome": "مرحباً",
+
   "navigation": {
     "home": "الرئيسية",
-    "about": "من نحن",
+    "about": "حول",
     "contact": "اتصل بنا"
   },
   "auth": {
@@ -18,23 +19,47 @@
       "errorMessage": "بيانات غير صحيحة"
     },
     "register": {
-      "title": "إنشاء حساب",
+      "title": "التسجيل",
       "email": "البريد الإلكتروني",
       "username": "اسم المستخدم",
       "password": "كلمة المرور",
       "confirmPassword": "تأكيد كلمة المرور",
-      "submitButton": "إنشاء حساب",
+      "submitButton": "تسجيل",
       "loadingButton": "جاري إنشاء الحساب...",
       "haveAccount": "لديك حساب بالفعل؟",
       "signIn": "تسجيل الدخول",
-      "successMessage": "تم إنشاء الحساب بنجاح!",
-      "errorMessage": "فشل في إنشاء الحساب"
+      "successMessage": "تم التسجيل بنجاح!",
+      "errorMessage": "فشل التسجيل"
     },
     "button": {
-      "signInUp": "تسجيل دخول/إنشاء حساب",
+      "signInUp": "تسجيل الدخول/التسجيل",
       "profile": "الملف الشخصي",
       "settings": "الإعدادات",
-      "signOut": "تسجيل خروج"
+      "signOut": "تسجيل الخروج"
+    },
+    "profile": {
+      "title": "إعدادات الملف الشخصي",
+      "theme": "المظهر",
+      "language": "اللغة",
+      "arabic": "العربية",
+      "english": "الإنجليزية",
+      "avatar": {
+        "upload": "تحميل صورة",
+        "uploading": "جاري التحميل...",
+        "error": "فشل تحميل الصورة"
+      },
+      "password": {
+        "title": "تغيير كلمة المرور",
+        "current": "كلمة المرور الحالية",
+        "new": "كلمة المرور الجديدة",
+        "confirm": "تأكيد كلمة المرور الجديدة",
+        "update": "تحديث كلمة المرور",
+        "error": {
+          "mismatch": "كلمات المرور الجديدة غير متطابقة",
+          "failed": "فشل تغيير كلمة المرور"
+        },
+        "success": "تم تحديث كلمة المرور بنجاح"
+      }
     }
   }
 }

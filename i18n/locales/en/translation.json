@@ -36,6 +36,28 @@
       "profile": "Profile",
       "settings": "Settings",
       "signOut": "Sign out"
+    },
+    "profile": {
+      "title": "Profile Settings",
+      "theme": "Theme",
+      "language": "Language",
+      "avatar": {
+        "upload": "Upload Avatar",
+        "uploading": "Uploading...",
+        "error": "Failed to upload avatar"
+      },
+      "password": {
+        "title": "Change Password",
+        "current": "Current Password",
+        "new": "New Password",
+        "confirm": "Confirm New Password",
+        "update": "Update Password",
+        "error": {
+          "mismatch": "New passwords do not match",
+          "failed": "Failed to change password"
+        },
+        "success": "Password updated successfully"
+      }
     }
   }
 }
