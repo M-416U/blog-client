@@ -4,8 +4,13 @@ import { useAuthStore } from "@/stores/useAuthStore";
 import Link from "next/link";
 import { FiUser, FiSettings, FiLogOut } from "react-icons/fi";
 import api from "@/lib/axios";
+import { useTranslation } from "@/i18n/client";
+import { useParams } from "next/navigation";
+import { langType } from "@/@types";
 
 export const AuthButton = () => {
+  const { lang }: { lang: langType } = useParams();
+  const { t } = useTranslation(lang);
   const { token, user, logout, setUserProfile } = useAuthStore();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -47,9 +52,9 @@ export const AuthButton = () => {
     return (
       <Link
         href="/login"
-        className="inline-flex items-center px-4 py-2 rounded-lg border text-white border-primary-light dark:border-primary-dark hover:opacity-90 transition-all"
+        className="inline-flex items-center px-4 py-2 rounded-lg border text-text-light dark:text-text-dark border-primary-light dark:border-primary-dark hover:opacity-90 transition-all"
       >
-        Sign in/Sign up
+        {t("auth.button.signInUp")}
       </Link>
     );
   }
@@ -90,7 +95,7 @@ export const AuthButton = () => {
               className="flex items-center gap-2 w-full p-2 text-text-light dark:text-text-dark hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
             >
               <FiUser className="text-lg" />
-              <span>Profile</span>
+              <span>{t("auth.button.profile")}</span>
             </Link>
 
             <Link
@@ -98,7 +103,7 @@ export const AuthButton = () => {
               className="flex items-center gap-2 w-full p-2 text-text-light dark:text-text-dark hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
             >
               <FiSettings className="text-lg" />
-              <span>Settings</span>
+              <span>{t("auth.button.settings")}</span>
             </Link>
 
             <button
@@ -106,7 +111,7 @@ export const AuthButton = () => {
               className="flex items-center gap-2 w-full p-2 text-red-500 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
             >
               <FiLogOut className="text-lg" />
-              <span>Sign out</span>
+              <span>{t("auth.button.signOut")}</span>
             </button>
           </div>
         </div>

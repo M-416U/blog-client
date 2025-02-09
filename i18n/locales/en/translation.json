@@ -30,6 +30,12 @@
       "signIn": "Sign in",
       "successMessage": "Registration successful!",
       "errorMessage": "Registration failed"
+    },
+    "button": {
+      "signInUp": "Sign in/Sign up",
+      "profile": "Profile",
+      "settings": "Settings",
+      "signOut": "Sign out"
     }
   }
 }
