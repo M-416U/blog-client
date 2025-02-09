@@ -1,9 +1,9 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import { useAuthStore } from "../stores/useAuthStore";
+import { useAuthStore } from "@/stores/useAuthStore";
 import Link from "next/link";
 import { FiUser, FiSettings, FiLogOut } from "react-icons/fi";
-import api from "../lib/axios";
+import api from "@/lib/axios";
 
 export const AuthButton = () => {
   const { token, user, logout, setUserProfile } = useAuthStore();

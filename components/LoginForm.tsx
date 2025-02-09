@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
-import { useAuthStore } from "../stores/useAuthStore";
-import { AuthInput } from "./ui/AuthInput";
+import { useAuthStore } from "@/stores/useAuthStore";
+import { AuthInput } from "@/components/ui/AuthInput";
 import { BiEnvelope, BiLock } from "react-icons/bi";
-import { useAlert } from "../context/AlertContext";
+import { useAlert } from "@/context/AlertContext";
 import Link from "next/link";
-import { validateLoginForm } from "../utils/validators";
+import { validateLoginForm } from "@/utils/validators";
 import { useTranslation } from "react-i18next";
 
 interface FormData {

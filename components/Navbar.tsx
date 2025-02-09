@@ -1,6 +1,6 @@
-import { AuthButton } from "./AuthButton";
-import LanguageSwitcher from "./LanguageSwitcher";
-import { ThemeToggle } from "./ThemeToggle";
+import { AuthButton } from "@/components/AuthButton";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const Navbar = () => {
   return (
